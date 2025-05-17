@@ -1,5 +1,3 @@
-// src/components/OutputDescriptorSection.tsx
-
 import React, { useState } from 'react';
 import { PolicyListEntry, OutputDescriptorType, isSelectablePolicy, isComposedPolicy, isTextPolicy } from '../types'; // Import type guards
 import { generateDescriptor, updatePolicyValidation } from '../utils'; // Import validation utility
@@ -11,8 +9,6 @@ interface OutputDescriptorSectionProps {
 
 const outputTypes = [
   { type: OutputDescriptorType.WSH, name: 'Wrapped SegWit Script Hash (wsh)' },
-  { type: OutputDescriptorType.TR, name: 'Taproot (tr)' },
-  // Add others as needed (e.g., pkh, sh, wpkh, wpsh) - though these might not use miniscript directly
 ];
 
 const OutputDescriptorSection: React.FC<OutputDescriptorSectionProps> = ({ policies }) => {

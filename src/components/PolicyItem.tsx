@@ -1,5 +1,3 @@
-// src/components/PolicyItem.tsx
-
 import React from 'react';
 import { PolicyListEntry } from '../types';
 import { CheckCircle2, XCircle } from 'lucide-react';

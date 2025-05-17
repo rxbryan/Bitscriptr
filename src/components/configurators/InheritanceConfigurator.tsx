@@ -59,6 +59,7 @@ const InheritanceConfigurator: React.FC<InheritanceConfiguratorProps> = ({
   const handleAdd = () => {
     // Add basic validation
     if (!config.ownerKey || config.heirsKeys.some(key => !key) || config.heirsThreshold < 1 || config.heirsThreshold > config.heirsKeys.length || config.timelock1 <= 0 || !config.thirdPartyKey || config.timelock2 <= 0 || config.timelock2 <= config.timelock1) {
+      // Updated validation message slightly
       alert('Please fill in all required fields correctly: Owner Key, all Heirs Keys, valid Heirs Threshold (>=1 and <= total heirs), Timelock 1 (>0), Third Party Key, and Timelock 2 (> Timelock 1).');
       return;
     }
@@ -127,13 +128,16 @@ const InheritanceConfigurator: React.FC<InheritanceConfiguratorProps> = ({
        </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Timelock 1 (e.g., Blocks for Heirs)</label>
+          {/* Updated label text */}
+          <label className="block text-sm font-medium text-gray-700">Timelock 1 (Enter blocks or timestamp for Heirs)</label>
           <input
             type="number"
             name="timelock1"
             value={config.timelock1}
             onChange={handleChange}
             min="1"
+            // Updated placeholder
+            placeholder="e.g., 525960 (blocks) or 1678886400 (timestamp)"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm text-gray-600 placeholder-gray-500" // Added text/placeholder classes
           />
        </div>
@@ -151,13 +155,16 @@ const InheritanceConfigurator: React.FC<InheritanceConfiguratorProps> = ({
        </div>
 
          <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Timelock 2 (e.g., Blocks for Third Party)</label>
+          {/* Updated label text */}
+          <label className="block text-sm font-medium text-gray-700">Timelock 2 (Enter blocks or timestamp for Third Party)</label>
           <input
             type="number"
             name="timelock2"
             value={config.timelock2}
             onChange={handleChange}
-             min={config.timelock1 + 1} // Timelock 2 must be greater than Timelock 1
+             min={config.timelock1 > 0 ? config.timelock1 + 1 : 1} // Ensure Timelock 2 is greater than Timelock 1, handle case where timelock1 is 0
+            // Updated placeholder
+             placeholder="e.g., 592580 (blocks) or 1700000000 (timestamp)"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm text-gray-600 placeholder-gray-500" // Added text/placeholder classes
           />
        </div>

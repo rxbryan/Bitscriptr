@@ -1,5 +1,3 @@
-// src/components/BitscriptrPage.tsx
-
 'use client'; // This is needed if you are using App Router in Next.js
 
 import React, { useState } from 'react';

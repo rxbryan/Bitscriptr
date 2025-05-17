@@ -1,5 +1,3 @@
-// src/components/MyPoliciesSection.tsx
-
 import React, { useState, useEffect } from 'react';
 import {
   PolicyListEntry,
@@ -54,7 +52,6 @@ const MyPoliciesSection: React.FC<MyPoliciesSectionProps> = ({ policies, onPolic
 
     // The useEffect above will automatically update `selectedPolicies` (the array of IDs)
     // based on the changes we just made to the `policies` array.
-    // No need to call setSelectedPolicies directly here anymore.
   };
 
   const handleCompose = () => {

@@ -1,5 +1,3 @@
-// src/components/CoreConditionsSection.tsx
-
 import React, { useState } from 'react';
 import ConditionCard from './ConditionCard';
 import { CoreConditionType, CoreConditionConfig } from '../types';

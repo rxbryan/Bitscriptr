@@ -1,9 +1,8 @@
-// src/components/CommonPatternsSection.tsx
-
 import React, { useState } from 'react';
 import PatternCard from './PatternCard';
-import { CommonPatternType, CommonPatternConfig, MultisigTimeoutConfig, VaultConfig, InheritanceConfig, SimpleEscrowConfig } from '../types'; // Import specific config types
-import MultisigTimeoutConfigurator from './configurators/MultisigTimeoutConfigurator';
+// Updated imports to use the new VaultConfig and remove the old VaultConfig/MultisigTimeoutConfig
+import { CommonPatternType, CommonPatternConfig, VaultConfig, InheritanceConfig, SimpleEscrowConfig } from '../types';
+// Updated import to use the renamed VaultConfigurator
 import VaultConfigurator from './configurators/VaultConfigurator';
 import InheritanceConfigurator from './configurators/InheritanceConfigurator';
 import EscrowConfigurator from './configurators/EscrowConfigurator';
@@ -13,15 +12,18 @@ interface CommonPatternsSectionProps {
   onAddPolicy: (policy: CommonPatternConfig) => void;
 }
 
+// Updated the commonPatterns array
 const commonPatterns = [
-  { type: CommonPatternType.MultisigTimeout, name: 'Multisig with Timeout', description: 'Require multiple signatures, or a single key after a delay.' },
-  { type: CommonPatternType.Vault, name: 'Vault (Delay + Cancel)', description: 'Withdrawal requires a delay; a different key can cancel during the delay.' },
+  // Renamed MultisigTimeout to Vault and updated description
+  { type: CommonPatternType.Vault, name: 'Vault (Delay + Cancel)', description: 'Require multiple signatures, or a single key after a delay.' },
   { type: CommonPatternType.Inheritance, name: 'Inheritance Scheme', description: 'Owner can spend, or heirs/third-party can spend after timelocks.' },
   { type: CommonPatternType.SimpleEscrow, name: 'Simple Escrow', description: 'Requires two parties, or an arbiter after a timeout.' },
 ];
 
 const CommonPatternsSection: React.FC<CommonPatternsSectionProps> = ({ onAddPolicy }) => {
+  // Updated selectedPattern type to CommonPatternType
   const [selectedPattern, setSelectedPattern] = useState<CommonPatternType | null>(null);
+  // Updated currentConfig type to CommonPatternConfig
    const [currentConfig, setCurrentConfig] = useState<CommonPatternConfig | null>(null);
 
 
@@ -64,8 +66,7 @@ const CommonPatternsSection: React.FC<CommonPatternsSectionProps> = ({ onAddPoli
   const renderConfiguratorComponent = (type: CommonPatternType) => {
       // Pass the currentConfig state and the add policy callback
       switch (type) {
-        case CommonPatternType.MultisigTimeout:
-          return <MultisigTimeoutConfigurator initialConfig={currentConfig as MultisigTimeoutConfig | undefined} onConfigChange={handleConfigChange} onAddPolicy={handleAddPolicyFromConfig} />;
+        // Case for the new Vault type, rendering the renamed configurator
         case CommonPatternType.Vault:
           return <VaultConfigurator initialConfig={currentConfig as VaultConfig | undefined} onConfigChange={handleConfigChange} onAddPolicy={handleAddPolicyFromConfig} />;
         case CommonPatternType.Inheritance:

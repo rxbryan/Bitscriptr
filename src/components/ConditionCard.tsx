@@ -1,5 +1,3 @@
-// src/components/ConditionCard.tsx
-
 import React from 'react';
 import { CoreConditionType } from '../types';
 import { Key, Users, Layers, Clock, Clock2, Lock } from 'lucide-react'; // Example icons

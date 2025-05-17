@@ -1,5 +1,3 @@
-// src/components/PatternCard.tsx
-
 import React from 'react';
 import { CommonPatternType } from '../types';
 import { Wallet, Hourglass, GitBranch, Briefcase } from 'lucide-react'; // Example icons
